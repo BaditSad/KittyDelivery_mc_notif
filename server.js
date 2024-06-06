@@ -22,6 +22,6 @@ db.mongoose
 
 app.use(bodyParser.json());
 
-app.use("/api", notificationsRouter);
+app.use("/", notificationsRouter);
 
 app.listen(port, () => console.log(`app running on http://localhost:${port}`));
