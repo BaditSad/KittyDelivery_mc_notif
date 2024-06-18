@@ -2,9 +2,10 @@ version: '3.8'
 
 services:
   mc_notification:
+    container_name: mc_notification_0
     build: .
     ports:
-      - "3003:3003"
+      - "3030:3003"
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
