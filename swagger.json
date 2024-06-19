@@ -1,0 +1,107 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Notification Management API",
+        "version": "1.0.0",
+        "description": "API for managing user notifications"
+    },
+    "paths": {
+        "/api/mc_notification/{userId}": {
+            "get": {
+                "summary": "Get notifications by user ID",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "12345"
+                        },
+                        "description": "ID of the user"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "description": "Page number for pagination"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 10
+                        },
+                        "description": "Number of items per page"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "totalPages": {
+                                            "type": "integer",
+                                            "example": 2
+                                        },
+                                        "notifications": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Notification"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Notifications not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Notification": {
+                "type": "object",
+                "properties": {
+                    "user_id": {
+                        "type": "string",
+                        "example": "12345"
+                    },
+                    "notification_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-06-30T12:45:00Z"
+                    },
+                    "notification_type": {
+                        "type": "string",
+                        "example": "info"
+                    },
+                    "notification_message": {
+                        "type": "string",
+                        "example": "New notification message"
+                    },
+                    "notification_is_read": {
+                        "type": "boolean",
+                        "example": false
+                    }
+                }
+            }
+        }
+    }
+}
