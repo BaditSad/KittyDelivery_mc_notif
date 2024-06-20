@@ -14,7 +14,7 @@ function randomDate(start, end) {
 }
 
 db.once("open", async function () {
-  console.log("Connected to MongoDB");
+  console.log(`🛠️Connection to MongoDB...`);
 
   try {
     await Notification.deleteMany({});
